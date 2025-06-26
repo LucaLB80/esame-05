@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--Link CDN-->
+    <title>Registrazione</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script> <!--Link CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script> <!--Link CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <style>
+        /* === LAYOUT BASE === */
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            background-image: url('./Immagini/streaming-movies-with-remote-control.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-attachment: fixed;
+        }
+
+        /* === COLORI E CLASSI CUSTOM === */
+        .bg-color {
+            background-color: rgba(28, 27, 27, 0.486);
+        }
+
+        .bg-color-primario {
+            background-color: rgba(28, 27, 27, 0.769);
+        }
+
+        .contenuto {
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.795);
+        }
+
+        .placeholder-light::placeholder {
+            color: #b9b6b6;
+            opacity: 1;
+        }
+
+        .linea-vert {
+            height: 60px;
+            width: 2px;
+            background-color: #fff;
+            opacity: 0.5;
+        }
+
+        .margin-y-large {
+            margin-top: 150px;
+            margin-bottom: 150px;
+        }
+
+        /* === BOTTONI === */
+        .btn-accedi {
+            background-color: #ff007f;
+            color: #fff;
+        }
+
+        .btn-accedi:hover {
+            background-color: #134cd1;
+            color: #fff;
+        }
+
+        .btn-registrati {
+            background-color: #ff007f;
+            color: #fff;
+        }
+
+        .btn-registrati:hover {
+            background-color: #134cd1;
+            color: #fff;
+        }
+
+        /* === TOGGLE PASSWORD === */
+        #togglePassword {
+            background-color: #495057;
+            border-color: #495057;
+            color: #fff;
+        }
+
+        #togglePassword:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+        }
+
+        /* === VALIDAZIONE FORM === */
+        .form-control.is-invalid,
+        .form-control.is-invalid.border-0 {
+            border: 2px solid #dc3545 !important;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+            background-color: #343a40 !important;
+        }
+
+        .invalid-feedback {
+            color: #dc3545 !important;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+            display: none;
+            font-weight: bold;
+        }
+
+        /* Mostra errori per campi normali */
+        .form-control.is-invalid+.invalid-feedback {
+            display: block !important;
+        }
+
+        /* Fix per input-group password */
+        .input-group .form-control.is-invalid {
+            border-right: none;
+        }
+
+        .input-group+.invalid-feedback {
+            display: none !important;
+        }
+
+        .input-group+.invalid-feedback.show {
+            display: block !important;
+        }
+
+        /* === RESPONSIVE === */
+        .main-responsive {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 320px) and (max-width: 992px) {
+            .btn-small {
+                width: 30% !important;
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1200px) {
+            .main-responsive {
+                width: 80% !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-responsive {
+                width: 60% !important;
+                margin-bottom: 100px;
+            }
+
+            .linea-vert {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .flex-md-row {
+                flex-direction: row !important;
+            }
+
+            .w-md-50 {
+                width: 50% !important;
+            }
+
+            .w-md-auto {
+                width: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .flex-column {
+                flex-direction: column !important;
+            }
+
+            .w-100 {
+                width: 100% !important;
+            }
+
+            .mb-2 {
+                margin-bottom: 0.5rem !important;
+            }
+        }
+
+        @media (max-width: 500px) {
+            h2.fs-1 {
+                font-size: 1.5rem !important;
+                word-wrap: break-word;
+            }
+
+            .contenuto {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <script type="module" src="dir/validazione.js"></script>
+</head>
+
+<body>
+    <header class="bg-dark p-1">
+        <!-- INIZIO NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <img src="./Immagini/Code.png" alt="Code" width="150">
+                <!-- Bottone sandwitch che appare quando il menù collassa -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#navbarOffcanvas">
+                    <span class="navbar-toggler-icon" data-bs-target="#offcanvasNavbar"></span>
+                </button>
+                <!-- Div Offcanvas -->
+                <div class="offcanvas offcanvas-start" data-bs-hideresize="true" id="navbarOffcanvas">
+                    <!-- Div header del offcanvas che contiene il titolo del pannello -->
+                    <div class="offcanvas-header" style="background-color: #ff007f;">
+                        <h5 class="offcanvas-title text-light" id="offcanvasLabel">Menu</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <!-- Div body del offcanvas che contiene il menu da far collassare -->
+                    <div class="offcanvas-body bg-dark">
+                        <!-- Voci di menù a sx -->
+                        <ul class="navbar-nav mt-2 me-auto justify-content-end ">
+                            <li class="nav-item">
+                                <a class="nav-link active ms-0 mt-2 mt-lg-0 ms-lg-4" aria-current="page" href="#">Pagina
+                                    Iniziale</a>
+                            </li>
+                        </ul>
+                        <!-- Voci di menu a dx racchiuse in un dropdown-->
+                        <ul class="d-flex navbar-nav">
+                            <button type="button" class="btn text-light btn-small mt-3 btn-accedi"
+                                data-bs-target="#Modal2" data-bs-toggle="modal"
+                                title="Accedi all'area personale">Accedi</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- FINE NAVBAR -->
+    </header>
+    <main>
+        <div class="container margin-y-large">
+            <div class=" d-flex justify-content-center align-items-center">
+                <div class="linea-vert me-3" style=" height: 500px;"></div>
+                <div class="p-4 bg-color text-white text-center rounded contenuto main-responsive m-1">
+                    <h2 class="fs-1 p-3">Un mondo di intrattenimento con un semplice click</h2>
+                    <p>Inserisci qui i tuoi dati ed iscriviti a <img src="./Immagini/Code.png" alt="Code" width="70">
+                    </p>
+                    <form id="registrationForm" novalidate>
+                        <div class="mb-3">
+                            <input type="text" id="nome" name="nome"
+                                class="form-control rounded bg-dark border-0 placeholder-light text-light"
+                                placeholder="Nome" required>
+                            <div class="invalid-feedback">Il nome è obbligatorio</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="cognome" name="cognome"
+                                class="form-control rounded bg-dark border-0 placeholder-light text-light"
+                                placeholder="Cognome" required>
+                            <div class="invalid-feedback">Il cognome è obbligatorio</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="indirizzo" name="indirizzo"
+                                class="form-control rounded bg-dark border-0 placeholder-light text-light"
+                                placeholder="Indirizzo" required>
+                            <div class="invalid-feedback">L'indirizzo è obbligatorio</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="codiceFiscale" name="codiceFiscale"
+                                class="form-control rounded bg-dark border-0 placeholder-light text-light"
+                                placeholder="Codice Fiscale" required maxlength="16">
+                            <div class="invalid-feedback">Il codice fiscale è obbligatorio</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" id="email" name="email"
+                                class="form-control rounded bg-dark border-0 placeholder-light text-light"
+                                placeholder="E-Mail" required>
+                            <div class="invalid-feedback">L'email è obbligatoria</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <input type="password" id="password" name="password"
+                                    class="form-control bg-dark border-0 placeholder-light text-light"
+                                    placeholder="Password" required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback" id="passwordError" style="display: none;">La password è
+                                obbligatoria</div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" id="registrati"
+                                class="btn rounded text-light btn-registrati mx-auto">Registrati</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="linea-vert ms-3" style=" height: 500px;"></div>
+            </div>
+        </div>
+    </main>
+    <!-- FOOTER -->
+    <footer class="container-fluid bg-dark text-light">
+        <div class="row text-center">
+            <div class="col-12 col-md-4 mb-1 mt-4">
+                <h6>F.A.Q.</h6>
+                <p class="m-0">Privacy</p>
+                <p class="m-0">Cookies</p>
+                <p class="m-0">Crediti</p>
+            </div>
+
+            <div class="col-12 col-md-4 mb-1 mt-4">
+                <h6>F.A.Q.</h6>
+                <p class="m-0">Link1</p>
+                <p class="m-0">Link2</p>
+            </div>
+
+            <div class="col-12 col-md-4 mb-1 mt-4">
+                <h6>F.A.Q.</h6>
+                <p class="m-0">Link1</p>
+                <p class="m-0">Link2</p>
+            </div>
+        </div>
+        <div class="text-center mb-2">
+            <p class="mb-0">Copyright &copy; 2025 - <span style="color: #ff007f;">CO</span>DE</p>
+        </div>
+    </footer>
+    <!-- FINESTRA MODAL 2-->
+    <div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Accedi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" required>
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-accedi">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
