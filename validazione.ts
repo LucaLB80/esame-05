@@ -1,5 +1,5 @@
-/// <reference path="interfaceDati.ts" />
-
+/// <reference path="interfaceDati.ts" />  
+// import { IUserRegistrazione } from './interfaceDati.js';  // ← Import normale
 import Utility from './Utility.js';
 
 // Script TypeScript
